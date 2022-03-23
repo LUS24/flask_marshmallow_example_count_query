@@ -36,7 +36,7 @@ class UserRegister(Resource):
         #     return err.messages, 400
 
         # Gracias al uso de Flask-Marshmallow y SQLAlchemy user ya no es un diccionario sino un objeto
-        user = user.load(request.get_json()) 
+        user = user_schema.load(request.get_json()) 
 
         if UserModel.find_by_username(user.username):
             return {"message": USER_ALREADY_EXISTS}, 400

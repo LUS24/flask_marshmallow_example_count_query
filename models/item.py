@@ -29,4 +29,4 @@ class ItemModel(db.Model):
     
     @staticmethod
     def get_count():
-        return db.session.query(func.count(ItemModel.id))
+        return db.session.query(func.count(ItemModel.id)).scalar()

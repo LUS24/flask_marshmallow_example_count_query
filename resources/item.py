@@ -2,7 +2,7 @@ from flask_restful import Resource
 from flask import request
 from flask_jwt_extended import jwt_required
 from models.item import ItemModel
-from schemas.item import ItemSchema, ItemCountSchema
+from schemas.item import ItemSchema
 # from marshmallow import ValidationError # No se necesita porque se implementa a nivel de aplicación.
 
 NAME_ALREADY_EXISTS = "An item with name '{}' already exists."
@@ -13,7 +13,6 @@ ITEM_DELETED = "Item deleted."
 
 item_schema = ItemSchema()
 item_list_schema = ItemSchema(many=True)
-item_count_schema = ItemCountSchema  # ADD
 
 
 class Item(Resource):
@@ -89,4 +88,4 @@ class ItemList(Resource):
 class ItemCount(Resource):
     @classmethod
     def get(cls):
-        return  {"total_items": item_count_schema.dump(ItemModel.get_count())}
+        return  {"total_items": ItemModel.get_count()}

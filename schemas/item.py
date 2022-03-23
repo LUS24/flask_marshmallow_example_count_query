@@ -12,9 +12,3 @@ class ItemSchema(ma.SQLAlchemyAutoSchema):
         dump_only = ('id',)
         # Necesario para tener la información para unir las tablas.
         include_fk = True
-
-class ItemCountSchema(ma.Schema):
-    class Meta:
-        model=ItemModel
-        load_instance=False
-        fields = ("total_items",)
