@@ -1,5 +1,5 @@
 from db import db
-from sqlalchemy import func
+# from sqlalchemy import func
 
 class ItemModel(db.Model):
     __tablename__ = 'items'
@@ -27,6 +27,12 @@ class ItemModel(db.Model):
         db.session.delete(self)
         db.session.commit()
     
-    @staticmethod
-    def get_count():
-        return db.session.query(func.count(ItemModel.id)).scalar()
+    # @staticmethod
+    # def get_count():
+    #     # return db.session.query(func.count(ItemModel.id)).scalar()
+    #     return db.session.query(ItemModel.id).count()
+
+    @classmethod
+    def get_count(cls):
+        # return db.session.query(func.count(ItemModel.id)).scalar()
+        return cls.query.count()
