@@ -1,6 +1,6 @@
 # Example of how to perform a query for counting items with flask-marshmallow
 
-Associated to to perform the query
+Related code to this query
 
 ## app
 
@@ -51,4 +51,14 @@ class ItemCountSchema(ma.Schema):
 @staticmethod
 def get_count():
     return db.session.query(func.count(ItemModel.id))
+```
+
+A more elegant solution
+
+```py
+...
+
+@classmethod
+def get_count(cls):
+    return cls.query.count()
 ```
